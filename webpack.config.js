@@ -6,8 +6,9 @@ module.exports = {
   devtool: "source-map",
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname + "/public"),
+    path: path.resolve(__dirname, "public"),
     filename: "index.bundle.js",
+    publicPath: "http://localhost:3000/public"
   },
   module: {
     rules: [
@@ -26,11 +27,6 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
-  },
-  devServer: {
-    contentBase: path.join(__dirname, "public"),
-    compress: true,
-    port: 9000,
   },
   plugins: [
     new HtmlWebpackPlugin({
