@@ -1,20 +1,19 @@
-class Tokenizer {
-  constructor(input) {
+export default class Tokenizer {
+  constructor() {
     this.result = [];
     this.acc = '';
-    this.separator = ["{", "}", "[", "]", ":", ","];
-    this.init(input);
+    this.separatorArr = ["{", "}", "[", "]", ":", ","];
   }
 
-  init(input) {
+  getTokens(input) {
     const strArr = input.split("").filter(v => v !== " ")
     strArr.forEach(str => this.tokenize(str));
     this.result = this.result.filter(v => v !== ',');
-    console.log(this.result);
+    return this.result;
   }
 
   tokenize(str) {
-    const separator = this.separator.find(v => str === v);
+    const separator = this.separatorArr.find(v => str === v);
     if(separator !== undefined) {
         if(this.acc.length > 0) {
             this.result.push(this.acc)
