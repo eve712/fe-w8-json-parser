@@ -2,6 +2,7 @@
 import Tokenizer from "./tokenizer.js";
 import Lexer from "./lexer.js";
 import parse from "./parser.js";
+import parseTami from "./parser2.js";
 
 const input = '[1,2,[3, [null, "hi"], 25]]';
 
@@ -11,5 +12,6 @@ const tokens = tokenizer.getTokens(input);
 const lexer = new Lexer(tokens);
 const lexResult = lexer.getLexResult(tokens);
 console.log(lexResult);
-// console.log(JSON.stringify(parse(lexResult), null, '\t'));
-console.dir(parse(lexResult), { depth: null });
+// console.log(parseTami(lexResult));
+// // console.dir(parseTami(lexResult), { depth: null });
+// console.log(JSON.stringify(parseTami(lexResult), null, "\t"));
