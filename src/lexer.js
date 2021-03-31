@@ -1,44 +1,37 @@
 export default class Lexer {
-    constructor() {
-        this.obj;
+    getTokenType = (tokens) => {
+        const type = {
+            '[': 'array',
+            ']': 'array',
+            '{': 'object',
+            '}': 'object',
+            'true': 'boolean',
+            'false': 'boolean',
+            'null': 'null',
+            ':': 'colon',
+        }
+        if (tokens[0] === '\'' && tokens[tokens.length - 1] === '\"') {
+            return 'string';
+        } else if (!isNaN(Number(tokens))) {
+            return 'number';
+        }
+        return type[tokens];
     }
-
-    getLexResult(tokens) {
-        const result = tokens.map((v, i, arr) => {
-            this.obj = {};
-            this.setType(v)
-            this.setSubtype(v)
-            this.setValue(v)
-            if(v === '[' || v === '{') this.checkChild(v, i, arr)
-            return this.obj;
+    getLexerResult = (tokens) => {
+        const result = tokens.map(token => {
+            const type = this.getTokenType(token);
+            const value = this.setValue(token, type);
+            return value;
         });
         return result
     }
-    setType(token) {
-        if (token === '{' || token === '}') this.obj.type = "object";
-        else if (token === '[' || token === ']') this.obj.type = "array";
-        else if (token === ':') this.obj.type = "objectSeperator";
-        else if (token[0] === '\"' || token === '\'') this.obj.type = "string";
-        else if (token === 'true' || token === 'false') this.obj.type = "boolean";
-        else if (/^[0-9]/g.test(token)) this.obj.type = "number";
-        else if (token === 'null') this.obj.type = "null";
-    }
-    setSubtype(token) {
-        if(token === '[' || token === '{') this.obj.subtype = "open"
-        else if(token === ']' || token === '}') this.obj.subtype = "close"
-    }
-    setValue(token) {
-        if(token === '{' || token === '}' || token === ':') return;
-        else if (token === '[' || token === ']') this.obj.value ="arrayObject";
-        else if (token[0] === '\"' || token === '\'') this.obj.value = token.substring(1, token.length-1);
-        else if (/^[0-9]/g.test(token)) this.obj.value = parseInt(token);
-        else if (token === 'true') this.obj.value = true;
-        else if (token === 'false') this.obj.value = false;
-        else if (token === 'null') this.obj.value = null;
-    }
-    checkChild(token, i , tokens) {
-        const arrayHasChild = token === '[' && tokens[i+1] !== ']' 
-        const objectHasChild = token === '{' && tokens[i+1] !== '}'
-        if(arrayHasChild || objectHasChild) this.obj.child = [];
-    }
+    setValue = (token, type) => {
+        if(type === 'boolean') return { type: type, value: Boolean(token) };
+        else if(type === 'null') return { type: type, value: null };
+        else if(type === 'string') return { type: type, value: token.substring(1, token.length-1) };
+        else if(type === 'number') return { type: type, value: parseInt(token) };
+        else if(token === '[' || token === '{' ) return {type: type, subType: 'open' , child: []};
+        else if(token === ']' || token === '}' ) return {type: type, subType: 'close' };
+        return { type: type, value: token};
+    };
 }
