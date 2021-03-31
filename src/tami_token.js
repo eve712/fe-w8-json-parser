@@ -10,6 +10,7 @@ export default class Tokenizer {
     strArr.forEach((str) => this.tokenize(str));
     this.result = this.result.filter((v) => v !== ",");
     console.log(this.result);
+    return this.result;
   }
 
   tokenize(str) {

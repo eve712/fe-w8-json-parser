@@ -7,8 +7,9 @@ export default class Lexer {
     const result = tokens.map((v, i, arr) => {
       this.obj = {};
       this.setType(v);
+      return this.obj;
     });
-    console.log(result);
+    return result;
   }
 
   setType(token) {
@@ -22,4 +23,5 @@ export default class Lexer {
     else if (/^[0-9]/g.test(token)) this.obj.type = "number";
     else if (token === "nul") this.obj.type = "null";
   }
+  setValue(token) {}
 }
