@@ -1,14 +1,25 @@
 // import './style.scss';
+import _ from './util.js';
 import Tokenizer from './tokenizer.js';
 import Lexer from './lexer.js';
-import parse from './parser.js';
+import Parser from './parser.js';
 
-const input = '[1,2,[3, [null, "hi"], 25]]'
+const input = '[false, {"[eve]": 21}, [23, null]]'
 
 const tokenizer = new Tokenizer();
-const tokens = tokenizer.getTokens(input);
+const lexer = new Lexer();
+const parser = new Parser();
 
-const lexer = new Lexer(tokens);
-const lexResult = lexer.getLexResult(tokens);
+const main = _.pipe(
+    tokenizer.getTokens.bind(tokenizer), 
+    lexer.getLexerResult.bind(lexer),
+    parser.parse.bind(parser)
+    )
+// main(input)
 
-console.log(JSON.stringify(parse(lexResult), null, '\t'))
+
+// =====test=====
+const tokens = tokenizer.getTokens(input)
+const lexRes = lexer.getLexerResult(tokens)
+console.log("lexResult : ", lexRes)
+console.log(JSON.stringify(parser.parse(lexRes), null, 2))
