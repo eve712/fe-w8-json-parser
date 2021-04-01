@@ -4,7 +4,7 @@ import Tokenizer from './tokenizer.js';
 import Lexer from './lexer.js';
 import Parser from './parser.js';
 
-const input = '[false, {"[eve]": 21}, [23, null]]'
+const input = '[false, [23, null]]'
 
 const tokenizer = new Tokenizer();
 const lexer = new Lexer();
