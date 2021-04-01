@@ -27,12 +27,12 @@ export default class Lexer {
         else return this.type[tokens];
     }
     setValue (token, type) {
-        if(type === 'boolean') return { type: type, value: Boolean(token) };
-        else if(type === 'null') return { type: type, value: null };
-        else if(type === 'string') return { type: type, value: token.substring(1, token.length-1) };
-        else if(type === 'number') return { type: type, value: parseInt(token) };
-        else if(token === '[' || token === '{' ) return {type: type, subType: 'open' , child: []};
-        else if(token === ']' || token === '}' ) return {type: type, subType: 'close' };
-        return { type: type, value: token};
+        if(type === 'boolean') return { type, value: (token === "true") ? true : false };
+        else if(type === 'null') return { type, value: null };
+        else if(type === 'string') return { type, value: token.substring(1, token.length-1) };
+        else if(type === 'number') return { type, value: parseInt(token) };
+        else if(token === '[' || token === '{' ) return { type, subType: 'open' , child: []};
+        else if(token === ']' || token === '}' ) return { type, subType: 'close' };
+        return { type, value: token};
     };
 }

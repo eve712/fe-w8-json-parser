@@ -37,8 +37,7 @@ export default class Tokenizer {
     if(!this.strStarted && this.isStrSeperator(str)) this.strStarted = true;
     else if(this.strStarted && this.isStrSeperator(str)) {
       this.strStarted = false;
-      this.result.push(this.acc)
-      this.acc = '';
+      this.pushNinitAcc();
     }
   }
 }
