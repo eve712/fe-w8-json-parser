@@ -1,3 +1,102 @@
-.main-cont {
-    background: seashell;
+.title {
+    display: flex;
+    flex-direction: row;
+    // margin: 50px 0 0 450px;
+    margin: 80px 80px 0 210px;
+    // align-items: center;
+    &__main {
+        font-size: 50px;
+    }
+    &__sub {
+        font-size: 20px;
+        color:rgb(118, 118, 118);
+    }
+    &__main2 {
+        font-size: 50px;
+        color:rgb(61, 171, 201);
+    }
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 80px;
+    color:rgb(56, 56, 60);
+    // flex-flow: column nowrap;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    padding: 10px;
+    min-width: 350px;
+    &__title {
+        font-size: 30px;
+        font-weight: 600;
+        margin: 20px 0;
+    }
+    &__box {
+        height: 300px;
+        border-radius: 20px;
+        border: 4mm ridge rgba(78, 216, 254, 0.6);
+        font-size: 20px;
+        margin: 20px 0;
+        padding: 10px;
+    }
+    &__box:focus{
+        outline:none;
+    }
+    &__btn {
+        margin: 0 20px;
+        padding: 10px;
+        text-align: center;
+        &__name{
+            border-radius: 10px;
+            border:none;
+            width: 280px;
+            height: 50px;
+            font-size: 30px;
+            font-family: ‘Roboto’, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 500;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 45px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+        }
+        &__name:hover{
+            border:none;
+            background-color: rgb(78, 216, 254,0.6);
+            box-shadow: 0px 15px 20px rgba(78, 216, 254,0.4);
+            color: #fff;
+            transform: translateY(-7px);
+        }
+        &__name:focus{
+            outline:none;
+        }
+    }
+}
+.output {
+    display: flex;
+    flex-direction: column;
+    min-width: 450px;
+    &__title {
+        font-size: 30px;
+        font-weight: 600;
+        margin: 20px 0;
+        text-align: center;
+    }
+    &__box {
+        margin: 0 20px;
+        padding: 10px;
+        &__result {
+            border-radius: 20px;
+            border: 4mm ridge rgba(78, 216, 254, 0.6);
+            padding: 10px;
+        }
+    }
 }
