@@ -4,24 +4,18 @@ export default class Parser {
         this.stack = [];
         this.prevData = 0;
     }
-
     parse(lexResList) {
         lexResList.forEach(data => {
             //array, object 시작
             if (data.subType === "open") {
                 //isProperty:1 (value==object)
-                if (this.prevData.type === "colon") {
-                    this.setNode(data, 1);
-                }
-                else {
-                    this.setNode(data,0);
-                }
+                delete data.subType;
+                if (this.prevData.type === "colon") this.setNode(data, 1);
+                else this.setNode(data,0);
                 this.stack.push(data.child);
             }
             //array, object 종료
-            else if (data.subType === "close") {
-                this.stack.pop();
-            }
+            else if (data.subType === "close") this.stack.pop();
             // string, number, colon ...
             else {
                 //colon이면 object property 생성
@@ -41,9 +35,7 @@ export default class Parser {
                     }
                     this.stack[this.stack.length - 1].pop();
                 }
-                else {
-                    this.setNode(data,0);
-                }
+                else this.setNode(data,0);
             }
             this.prevData = data;
         });
@@ -56,22 +48,15 @@ export default class Parser {
         if (this.property) {
             this.property.type = "objectProperty";
             this.property.value.propValue.type = data.type;
-            if (isProperty === 0) {
-                this.property.value.propValue.value = data.value;
-            }
-            else {
-                this.property.value.propValue.value = data.child;    
-            }
+            if (isProperty === 0) this.property.value.propValue.value = data.value;
+            else this.property.value.propValue.value = data.child;    
+            
             this.stack[this.stack.length - 1].push(this.property);
             this.property = null;
         }
         else {
-            if (this.stack.length === 0) {
-                this.stack.push(data);
-            }
-            else {
-                this.stack[this.stack.length - 1].push(data);
-            }
+            if (this.stack.length === 0) this.stack.push(data);
+            else this.stack[this.stack.length - 1].push(data);
         }
     }
 } 
