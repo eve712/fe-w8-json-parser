@@ -5,18 +5,8 @@ import Lexer from './lexer.js';
 import Parser from './stackParser.js';
 // import Parser from './parser.js';
 
-// input 2:  = '[{"eve" : 27, "tami": [{"age":26},28]}]'
-// input 1 : [["str", {"a":2}], {"b": [1,2], "2": 123}]
 const resultbox = document.querySelector(".output__box__result");
 const transBtn = document.querySelector(".input__btn__name");
-
-// =====test=====
-// const tokens = tokenizer.getTokens(input);
-// const lexRes = lexer.getLexerResult(tokens);
-// const parRes = parser.parse(lexRes);
-// const parResJson = JSON.stringify(parRes, null, 2);
-// resultbox.innerHTML = parResJson;
-
 
 transBtn.addEventListener('click', () => {
     const tokenizer = new Tokenizer();
