@@ -3,4 +3,4 @@ const _ = {
     pipe : (...fns) => arg => fns.reduce((arg, fn) => fn(arg),arg)
 }
 
-export default _;
+export default _; 
