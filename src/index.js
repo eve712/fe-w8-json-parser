@@ -4,7 +4,7 @@ import Tokenizer from './tokenizer.js';
 import Lexer from './lexer.js';
 import Parser from './parser.js';
 
-const input = '[{"eve" : 27, "tami": true}]'
+const input = '[{"b": [1,2], "a": 123}]'
 
 const tokenizer = new Tokenizer();
 const lexer = new Lexer();
@@ -15,11 +15,4 @@ const main = _.pipe(
     lexer.getLexerResult.bind(lexer),
     parser.parse.bind(parser)
     )
-// main(input)
-
-
-// =====test=====
-const tokens = tokenizer.getTokens(input)
-const lexRes = lexer.getLexerResult(tokens)
-console.log("lexResult : ", lexRes)
-console.log(JSON.stringify(parser.parse(lexRes), null, 2))
+main(input);

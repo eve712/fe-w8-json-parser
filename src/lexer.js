@@ -34,5 +34,5 @@ export default class Lexer {
         else if(token === '[' || token === '{' ) return { type, subType: 'open' , child: []};
         else if(token === ']' || token === '}' ) return { type, subType: 'close' };
         return { type, value: token};
-    };
+    }
 }
